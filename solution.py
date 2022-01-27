@@ -13,12 +13,10 @@ class Solution:
         self.media = 0
 
     def abrir_arquivo(self):
-        data_in = open(self.url, "r")
-        for linha in data_in:
-            valores = linha.split()
-            self.data[valores[0]] = int(valores[1])
-        data_in.close()
-
+        with open(self.url, "r") as data_in:
+            for linha in data_in:
+                valores = linha.split()
+                self.data[valores[0]] = int(valores[1])
         for nome in self.data:
             self.mb[nome] = round(self.data[nome] / (1024 ** 2), 2)
 
